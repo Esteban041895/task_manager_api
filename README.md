@@ -1,5 +1,16 @@
 # Task Manager API
 
+## AI Collaboration
+
+See [explanation.md](explanation.md) for a detailed account of how I worked with AI to build this project, covering:
+
+- How I validated the AI's suggestions
+- How I corrected or improved the output, if necessary
+- How I handled edge cases, authentication, and validations
+- How I assessed the performance and idiomatic quality of the code
+
+---
+
 A RESTful JSON API built with Ruby on Rails 7 (API-only mode) for managing tasks. Tasks are scoped to individual users via a request-header stub — ready to swap in real authentication without changing the rest of the application.
 
 ---

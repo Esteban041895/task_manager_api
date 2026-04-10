@@ -1,5 +1,24 @@
 # Explanation
 
+## Prompt to Claude
+Build a RESTful JSON API in Ruby on Rails 7+ (API-only mode) for a task management system.
+Models:
+
+User: create a minimal model and migration so associations and tests work. No User endpoints or authentication logic.
+Task belongs to a User and has: title (string, required), description (text, optional), status (enum: pending, in_progress, completed — default pending), due_date (date, optional).
+
+Requirements:
+
+Full CRUD endpoints nested under /api/v1/
+Tasks scoped to the current user (no user can see/modify another's tasks)
+Strong params and model validations
+Proper HTTP status codes (201, 404, 422, etc.)
+Consistent JSON error responses
+RSpec request specs for all endpoints including error cases
+Follow Rails conventions: thin controllers, fat models
+
+Don't include: Devise setup, JWT implementation, or Docker config — just stub current_user with a before_action.
+
 ## How I validated the AI's suggestions
 
 I reviewed each piece of generated code before accepting it rather than treating the output as final. For the models, I checked that the associations, validations, and enum definition made sense. 
@@ -10,7 +29,7 @@ For the migrations, I verified the column types, constraints, and defaults befor
 
 Several corrections came up during the session:
 
-- **Removed the email field from User.** The AI included `email` with a uniqueness validation and a database index. I pointed out that the spec said to assume a user exists and only needed an ID to work — email was unnecessary overhead. The AI removed the column, index, and related validation.
+- **Removed the email and name field from User.** The AI included `name` and `email` with a uniqueness validation and a database index. I pointed out that the spec said to assume a user exists and only needed an ID to work — email was unnecessary overhead. The AI removed the columns, index, and related validation.
 
 - **Removed `validate: true` from the enum.** The AI added this option so that an unknown status value would produce a standard validation error. I pushed back because the enum already guards against invalid values by raising `ArgumentError` — adding `validate: true` was redundant. The AI agreed, reverted it, and instead added a `rescue_from ArgumentError` in the controller to handle the case gracefully at the API boundary.
 

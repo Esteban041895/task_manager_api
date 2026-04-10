@@ -2,7 +2,7 @@
 
 ## AI Collaboration
 
-See [explanation.md](explanation.md) for a detailed account of how I worked with AI to build this project, covering:
+See [explanation.md](EXPLANATION.md) for a detailed account of how I worked with AI to build this project, covering:
 
 - How I validated the AI's suggestions
 - How I corrected or improved the output, if necessary
